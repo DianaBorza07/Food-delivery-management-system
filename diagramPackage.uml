@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="96.152380952381" y="200.0">presentationLayer</node>
+    <node x="116.42619047619048" y="0.0">dataLayer</node>
+    <node x="41.0" y="85.0">bussinesLayer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="bussinesLayer" target="bussinesLayer">
+      <point x="-28.571428571428584" y="15.0" />
+      <point x="112.42857142857142" y="155.0" />
+      <point x="1.0" y="155.0" />
+      <point x="1.0" y="90.0" />
+      <point x="-100.0" y="-10.0" />
+    </edge>
+    <edge source="presentationLayer" target="bussinesLayer">
+      <point x="-96.66666666666666" y="-15.0" />
+      <point x="115.48571428571434" y="180.0" />
+      <point x="140.0" y="180.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="presentationLayer" target="dataLayer">
+      <point x="96.66666666666663" y="-15.0" />
+      <point x="308.81904761904764" y="170.0" />
+      <point x="261.5" y="170.0" />
+      <point x="261.5" y="55.0" />
+      <point x="263.42619047619047" y="55.0" />
+      <point x="63.0" y="15.0" />
+    </edge>
+    <edge source="presentationLayer" target="presentationLayer">
+      <point x="77.33333333333331" y="15.0" />
+      <point x="289.4857142857143" y="270.0" />
+      <point x="56.15238095238098" y="270.0" />
+      <point x="56.15238095238098" y="205.0" />
+      <point x="-116.0" y="-10.0" />
+    </edge>
+    <edge source="bussinesLayer" target="dataLayer">
+      <point x="-50.0" y="-15.0" />
+      <point x="90.0" y="55.0" />
+      <point x="137.42619047619047" y="55.0" />
+      <point x="-63.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="331.5" y="50.0" />
+  <SelectedNodes>
+    <node>bussinesLayer</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
