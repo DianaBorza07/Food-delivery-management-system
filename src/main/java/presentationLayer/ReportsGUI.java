@@ -167,7 +167,7 @@ public class ReportsGUI {
         });
         frmGenerateReports.setTitle("Generate reports");
         frmGenerateReports.setBounds(100, 100, 544, 582);
-        frmGenerateReports.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmGenerateReports.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 
     }

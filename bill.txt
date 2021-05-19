@@ -1,5 +1,7 @@
-Order number 1
-Order date: 18-05-2021
-Product name: Brown Rice and Barley  Price:16
-Product name: Sausage and Feta Phyllo Triangles  Price:41
-Total price: 57
+Order number 8
+Order date: 19-05-2021
+Product name: Fried Stuffed Chinese Eggplant  Price:35
+Product name: Roast Pork Lo Mein  Price:38
+Product name: Jeweled Rice  Price:63
+Product name: Baltimore Eggnog  Price:63
+Total price: 199

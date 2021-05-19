@@ -154,7 +154,7 @@ public class ClientGUI {
         frmClient.getContentPane().add(rdbtnPrice);
         JButton btnConfirmSelection = new JButton("Confirm");
         btnConfirmSelection.addActionListener(e -> {
-            if(!rdbtnRating.isSelected() && !rdbtnCalories.isSelected())
+            if(!rdbtnRating.isSelected() && !rdbtnCalories.isSelected() && !rdbtnFats.isSelected() && !rdbtnPrice.isSelected() && !rdbtnProteins.isSelected()&& !rdbtnSodium.isSelected())
                 JOptionPane.showMessageDialog(null,"Select one criteria for searching the products");
             else
             if(tfMax.getText().isBlank() || tfMin.getText().isBlank())

@@ -254,7 +254,7 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
 
     public void generateReportProductsOrderedMost(int value) throws IOException {
         assert value<=0 : "Negative value";
-        int[] nrOfOrdersPerProduct = new int[200];
+        int[] nrOfOrdersPerProduct = new int[20000];
         orderListMap.forEach((k,v)->{
             v.forEach(menuItem -> {nrOfOrdersPerProduct[menuItem.getItemID()]++;}); });
         String message = "The products ordered more than " +value+"times so far:\n";
@@ -268,9 +268,9 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
 
     public void generateReportProductBasedOnDay(Date date) throws IOException {
         assert date==null:"Date is null";
-        int[] nrOfOrdersPerProduct = new int[200];
+        int[] nrOfOrdersPerProduct = new int[20000];
         orderListMap.forEach((k,v)->{
-            if(k.getOrderDate().getDay() == date.getDay())
+            if(k.getOrderDate().getDay() == date.getDay() && k.getOrderDate().getMonth() == date.getMonth())
                  v.forEach(menuItem -> { nrOfOrdersPerProduct[menuItem.getItemID()]++;}); });
         String message = "The products ordered within "+ date +" with the number of times they have been ordered:\n";
         for (int i : nrOfOrdersPerProduct
