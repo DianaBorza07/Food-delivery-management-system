@@ -29,7 +29,10 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
         baseProductID = 1;
         orderID = 1;
     }
-
+    public boolean invariant(){
+        if(this.baseProducts == null) return false;
+        else return true;
+    }
     public void importProducts() throws IOException {
         List<String> linesFromFile = Files.lines(Paths.get("products.csv")).skip(1).collect(Collectors.toList());
         HashSet<BaseProduct> baseProductsAuxiliary = new HashSet<>();
@@ -53,73 +56,67 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
               baseProductID++;
         }
     }
-
     public HashSet<BaseProduct> getProductsBasedOnRating(float minValue, float maxValue) {
         assert minValue<0 || maxValue<0: "Incorrect values";
+        assert invariant() : "Empty menu";
         HashSet<BaseProduct> filteredProducts;
         filteredProducts = (HashSet<BaseProduct>) baseProducts.stream().filter(
                 f-> f.getRating()>=minValue && f.getRating()<=maxValue).collect(Collectors.toSet());
         return filteredProducts;
     }
-
     public HashSet<BaseProduct> getProductsBasedOnCalories(int minValue, int maxValue) {
         assert minValue<0 || maxValue<0: "Incorrect values";
+        assert invariant() : "Empty menu";
         HashSet<BaseProduct> filteredProducts = new HashSet<>();
         filteredProducts = (HashSet<BaseProduct>) baseProducts.stream().filter(
                 f-> f.getCalories()>=minValue && f.getCalories()<=maxValue).collect(Collectors.toSet());
         return filteredProducts;
     }
-
     public HashSet<BaseProduct> getProductsBasedOnProteins(int minValue, int maxValue) {
         assert minValue<0 || maxValue<0: "Incorrect values";
+        assert invariant() : "Empty menu";
         HashSet<BaseProduct> filteredProducts = new HashSet<>();
         filteredProducts = (HashSet<BaseProduct>) baseProducts.stream().filter(
                 f-> f.getProtein()>=minValue && f.getProtein()<=maxValue).collect(Collectors.toSet());
         return filteredProducts;
     }
-
     public HashSet<BaseProduct> getProductsBasedOnFats(int minValue, int maxValue) {
         assert minValue<0 || maxValue<0: "Incorrect values";
+        assert invariant() : "Empty menu";
         HashSet<BaseProduct> filteredProducts = new HashSet<>();
         filteredProducts = (HashSet<BaseProduct>) baseProducts.stream().filter(
                 f-> f.getFat()>=minValue && f.getFat()<=maxValue).collect(Collectors.toSet());
         return filteredProducts;
     }
-
     public HashSet<BaseProduct> getProductsBasedOnSodium(int minValue, int maxValue) {
         assert minValue<0 || maxValue<0: "Incorrect values";
+        assert invariant() : "Empty menu";
         HashSet<BaseProduct> filteredProducts = new HashSet<>();
         filteredProducts = (HashSet<BaseProduct>) baseProducts.stream().filter(
                 f-> f.getSodium()>=minValue && f.getSodium()<=maxValue).collect(Collectors.toSet());
         return filteredProducts;
     }
-
     public HashSet<BaseProduct> getProductsBasedOnPrice(int minValue, int maxValue) {
         assert minValue<0 || maxValue<0: "Incorrect values";
+        assert invariant() : "Empty menu";
         HashSet<BaseProduct> filteredProducts = new HashSet<>();
         filteredProducts = (HashSet<BaseProduct>) baseProducts.stream().filter(
                 f-> f.getPrice()>=minValue && f.getPrice()<=maxValue).collect(Collectors.toSet());
         return filteredProducts;
     }
-
-
     public static <T> Predicate<T> distinctByName(Function<? super T, ?> keyExtractor) {
         Set<Object> obj = ConcurrentHashMap.newKeySet();
         return t -> obj.add(keyExtractor.apply(t));
     }
-
     public HashSet<BaseProduct> getBaseProducts() {
         return baseProducts;
     }
-
     public HashSet<MenuItem> getMenuItems() {
         return menuItems;
     }
-
     public Map<Order, HashSet<MenuItem>> getOrderListMap() {
         return orderListMap;
     }
-
     public void addMenuItems(List<Integer> itemsID){
         assert itemsID==null : "Null values";
         int i =0;
@@ -152,7 +149,6 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
         assert order==null : "Order is null";
         return order;
     }
-
     private void generateBill(Order order, HashSet<MenuItem> menuItemsList) throws IOException {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String dateString = format.format( order.getOrderDate());
@@ -175,11 +171,9 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
         assert sum<0 : "Negative sum";
         return sum;
     }
-
     public List<Order> getOrders() {
         return orders;
     }
-
     public void saveInformation(){
         Serializator serializator = new Serializator();
         try {
@@ -188,13 +182,12 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
             e.printStackTrace();
         }
     }
-
     public void setBaseProductID(int baseProductID) {
         this.baseProductID = baseProductID;
     }
-
     public void deleteProduct(int id){
         assert id<0 : "Bad id";
+        assert invariant() : "Empty menu";
         for (BaseProduct b: baseProducts
              ) {
             if(b.getItemID() == id) {
@@ -202,28 +195,21 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
                 break;
             } }
     }
-
     public void addProduct(BaseProduct baseProduct){
         assert baseProduct == null : "Null input ";
         baseProduct.setItemID(baseProductID);
         baseProductID++;
         baseProducts.add(baseProduct);
     }
-
     public void modifyProduct(int productId,float rating, String name, int calories, int sodium, int fat,int proteins ,int price){
         assert productId<0 || rating<0 || name==null || calories<0 ||sodium<0 || fat<0 || proteins<0 || price<0 : "Bad inputs";
+        assert invariant() : "Empty menu";
         for (BaseProduct b : baseProducts
              ) {
             if(b.getItemID()==productId){
-                b.setItemName(name);
-                b.setCalories(calories);
-                b.setFat(fat);
-                b.setProtein(proteins);
-                b.setSodium(sodium);
-                b.setRating(rating);
-                b.setPrice(price); } }
+                b.setItemName(name);b.setCalories(calories);b.setFat(fat);b.setProtein(proteins);
+                b.setSodium(sodium);b.setRating(rating);b.setPrice(price); } }
     }
-
     public void generateReportTimeInterval(int startHour, int endHour) throws IOException {
         assert startHour<0 || endHour<0 : "Bad hour input";
         List<Order> fileredOrders = orders.stream().filter(
@@ -235,7 +221,6 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
         writer.write(message);
         writer.close();
     }
-
     public void generateReportClients(int number, int value) throws IOException { // lists the clients id
         assert number<=0 || value<=0 : "Negative numbers";
         AtomicInteger[] nrOfOrdersPerClient = new AtomicInteger[200];
@@ -251,7 +236,6 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
         writer.write(message);
         writer.close();
     }
-
     public void generateReportProductsOrderedMost(int value) throws IOException {
         assert value<=0 : "Negative value";
         int[] nrOfOrdersPerProduct = new int[20000];
@@ -265,7 +249,6 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
         writer.write(message);
         writer.close();
     }
-
     public void generateReportProductBasedOnDay(Date date) throws IOException {
         assert date==null:"Date is null";
         int[] nrOfOrdersPerProduct = new int[20000];
@@ -279,7 +262,6 @@ public class DeliveryService implements IDeliveryServiceProcessing, Serializable
         writer.write(message);
         writer.close();
     }
-
     public void prepareOrder(){
         int min=Integer.MAX_VALUE;
         Order o = null;

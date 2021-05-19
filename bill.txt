@@ -1,7 +1,8 @@
-Order number 8
+Order number 6
 Order date: 19-05-2021
-Product name: Fried Stuffed Chinese Eggplant  Price:35
-Product name: Roast Pork Lo Mein  Price:38
-Product name: Jeweled Rice  Price:63
-Product name: Baltimore Eggnog  Price:63
-Total price: 199
+Product name: Grilled Steaks with Blue Cheese and Chiles  Price:64
+Product name: Baked Trout with Spinach-Butter Sauce  Price:49
+Product name: Chocolate Orange Petits Fours  Price:59
+Product name: Chocolate Hazelnut Cake with Praline Chocolate Crunch  Price:63
+Product name: Sweet Potato Purée with Brown Sugar and Sherry  Price:29
+Total price: 264
